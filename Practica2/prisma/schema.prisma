@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Define a generator for Prisma client
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Define a data source for PostgreSQL
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL") // URL de la base de datos PostgreSQL obtenida de las variables de entorno
+}
+
+// Define the model for "negocioModel"
+model negocioModel {
+  id                Int     @id @default(autoincrement()) // Identificador único autoincremental
+  correoNegocio     String  @unique // Correo del negocio, único
+  nombreNegocio     String  // Nombre del negocio
+  direccionNegocio  String  // Dirección del negocio
+  telefonoNegocio   Int     // Número de teléfono del negocio
+  totalLibros       Int     // Cantidad total de libros en el negocio
+  inventario        inventarioModel[] // Relación con el modelo de inventario
+}
+
+// Define the model for "encargadoModel"
+model encargadoModel {
+  id                Int     @id @default(autoincrement()) // Identificador único autoincremental
+  correoEncargado   String  @unique // Correo del encargado, único
+  nombreEncargado   String  // Nombre del encargado
+  telefonoEncargado Int     // Número de teléfono del encargado
+  inventario        inventarioModel[] // Relación con el modelo de inventario
+}
+
+// Define the model for "inventarioModel"
+model inventarioModel {
+  id              Int             @id @default(autoincrement()) // Identificador único autoincremental
+  numeroCopias    Int             // Número de copias disponibles
+  estado          String          // Estado del inventario
+  precioVenta     Int             // Precio de venta
+  precioAlquiler  Int             // Precio de alquiler
+  encargado       encargadoModel  @relation(fields: [encargadoId], references: [id]) // Relación con el encargado
+  encargadoId     Int             // ID del encargado asociado
+  negocio         negocioModel    @relation(fields: [negocioId], references: [id]) // Relación con el negocio
+  negocioId       Int             // ID del negocio asociado
+}
