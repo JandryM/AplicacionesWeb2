@@ -11,7 +11,9 @@ export class CreateEncargadoDto {
     static create(props: {[key:string]: any}): [string?, CreateEncargadoDto?]{
         const { correoEncargado,nombreEncargado, telefonoEncargado, inventario}= props;
 
-        if (!correoEncargado && !nombreEncargado && !telefonoEncargado) return ['Propiedades "correo, nombre y telefono" requeridas', undefined];
+        if (!correoEncargado) return ['Propiedad Correo requerida', undefined];
+        if (!nombreEncargado) return ['Propiedad Nombre requerida', undefined];
+        if (!telefonoEncargado) return ['Propiedad Telefono requerida', undefined];
 
         return [undefined, new CreateEncargadoDto(correoEncargado, nombreEncargado, telefonoEncargado, inventario)];
     }

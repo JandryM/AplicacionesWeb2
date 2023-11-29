@@ -11,7 +11,12 @@ export class CreateInventarioDto {
     static create(props: {[key:string]: any}): [string?, CreateInventarioDto?]{
         const { numeroCopias,estado, precioVenta,precioAlquiler,encargadoId,negocioId}= props;
 
-        if (!numeroCopias && !estado && !precioVenta && !precioAlquiler && !encargadoId && !negocioId) return ['Propiedades "Numero de copias, estado, precioVenta y precioAlquiler" requeridas', undefined];
+        if (!numeroCopias) return ['Propiedad Numero de Copias requerida', undefined];
+        if (!estado) return ['Propiedad Estado requerida', undefined];
+        if (!precioVenta) return ['Propiedad Precio de Venta requerida', undefined];
+        if (!precioAlquiler) return ['Propiedad Precio de Alquiler requerida', undefined];
+        if (!encargadoId) return ['Propiedad EncargadoID requerida', undefined];
+        if (!negocioId) return ['Propiedad NegocioID requerida', undefined];
 
         return [undefined, new CreateInventarioDto(numeroCopias, estado, precioVenta,precioAlquiler,encargadoId,negocioId,)];
     }

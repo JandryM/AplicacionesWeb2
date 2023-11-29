@@ -8,7 +8,8 @@ export class CreateorigenIdiomaDto {
     static create(props: {[key:string]: any}): [string?, CreateorigenIdiomaDto?]{
         const { nombrepais, idiomaoficial}= props;
 
-        if (!nombrepais && !idiomaoficial ) return ['Propiedades nombrepais y idiomaoficial requerida', undefined];
+        if (!nombrepais) return ['Propiedades Nombre del Pais requerida', undefined];
+        if (!idiomaoficial) return ['Propiedades Idioma Oficial requerida', undefined];
 
         return [undefined, new CreateorigenIdiomaDto(nombrepais, idiomaoficial)];
     }

@@ -9,7 +9,9 @@ export class CreateTraduccionIdiomaDto {
     static create(props: {[key:string]: any}): [string?, CreateTraduccionIdiomaDto?]{
         const { numerotraduccion, nombretraduccion, ididioma}= props;
 
-        if ( !numerotraduccion && !nombretraduccion && !ididioma) return ['Propiedades del numerotraduccion, nombretraduccion y ididioma requerida', undefined];
+        if ( !numerotraduccion) return ['Propiedad Numero de Traduccion requerida', undefined];
+        if ( !nombretraduccion) return ['Propiedad Nombre de Traduccion requerida', undefined];
+        if ( !ididioma) return ['Propiedad Idioma requerida', undefined];
 
         return [undefined, new CreateTraduccionIdiomaDto(numerotraduccion, nombretraduccion, ididioma)];
     }

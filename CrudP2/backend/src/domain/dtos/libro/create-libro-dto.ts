@@ -10,7 +10,11 @@ export class CreateLibroDto {
     static create(props: {[key:string]: any}): [string?, CreateLibroDto?]{
         const { ISBN, nombreLibro, anopublicacion, edicionLibro, clasificacionLibro}= props;
 
-        if (!ISBN && !nombreLibro && !anopublicacion && !edicionLibro && !clasificacionLibro) return ['Propiedad Email requerida', undefined];
+        if (!ISBN ) return ['Propiedad Email requerida', undefined];
+        if (!nombreLibro ) return ['Propiedad Nombre requerida', undefined];
+        if (!anopublicacion ) return ['Propiedad Año de Publicacion requerida', undefined];
+        if (!edicionLibro ) return ['Propiedad Edicion requerida', undefined];
+        if (!clasificacionLibro ) return ['Propiedad Clasificacion requerida', undefined];
 
         return [undefined, new CreateLibroDto(ISBN, nombreLibro, anopublicacion, edicionLibro, clasificacionLibro)];
     }

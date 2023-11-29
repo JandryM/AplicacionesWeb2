@@ -9,7 +9,11 @@ export class CreateEditorialDto {
     static create(props: {[key:string]: any}): [string?, CreateEditorialDto?]{
         const { nombreEditorial, correoEditorial, direccionEditorial, telefonoEditorial, libroId}= props;
 
-        if (!nombreEditorial && !correoEditorial && !direccionEditorial && !telefonoEditorial && !libroId) return ['Propiedades "nombreEditorial, correoEditorial, direccionEditorial, telefonoEditorial, libroId', undefined];
+        if (!nombreEditorial) return ['Propiedad Nombre Requerida ', undefined];
+        if (!correoEditorial) return ['Propiedad Correo Requerida ', undefined];
+        if (!direccionEditorial) return ['Propiedad Direccion Requerida ', undefined];
+        if (!telefonoEditorial) return ['Propiedad Telefono Requerida ', undefined];
+        if (!libroId) return ['Propiedad LibroID Requerida ', undefined];
 
         return [undefined, new CreateEditorialDto(nombreEditorial, correoEditorial, direccionEditorial, telefonoEditorial, libroId)];
     }

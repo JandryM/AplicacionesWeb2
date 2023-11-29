@@ -8,7 +8,9 @@ export class CreateAutorDto {
     static create(props: {[key:string]: any}): [string?, CreateAutorDto?]{
         const { cedulautor, nombreautor, correoautor}= props;
 
-        if (!cedulautor && !nombreautor && !correoautor) return ['Propiedad Cedula, nombre y correo del autor requerida', undefined];
+        if (!cedulautor) return ['Propiedad Cedula, nombre y correo del autor requerida', undefined];
+        if (!cedulautor) return ['Propiedad Nombre del autor requerida', undefined];
+        if (!correoautor) return ['Propiedad Correo del autor requerida', undefined];
 
         return [undefined, new CreateAutorDto(cedulautor, nombreautor, correoautor)];
     }

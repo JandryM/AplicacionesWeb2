@@ -8,7 +8,9 @@ export class CreateNacionalidadDto {
     static create(props: {[key:string]: any}): [string?, CreateNacionalidadDto?]{
         const { nombrepais, nombreciudad, AutorId }= props;
 
-        if (!nombrepais && !nombreciudad && !AutorId) return ['Propiedades del nombrepais, nombreciudad y autorIdNa requeridos', undefined];
+        if (!nombrepais) return ['Propiedad Nombre del Pais requerida', undefined];
+        if (!nombreciudad) return ['Propiedad Nombre de la Ciudad requerida', undefined];
+        if (!AutorId) return ['Propiedad AutorID requerida', undefined];
 
         return [undefined, new CreateNacionalidadDto (nombrepais, nombreciudad, AutorId)];
     }
